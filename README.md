@@ -89,9 +89,9 @@ No big deal, you can add keybindings in many IDEs.
 
 Like Emacs, Lighttable can modify its behavior, with just a few lines of Clojurescript.
 
-### Run and modify a plugin from source
+### Modify and run a plugin from source
 
-For plugin development, you must clone its repo. If you already installed the plugin via Plugin manager as described above, uninstall it.
+For plugin development, you must clone the plugin repo. If you already installed the plugin via Plugin manager as described above, uninstall the plugin.
 
 How to clone the repo into your plugins folder:
 
@@ -99,15 +99,17 @@ How to clone the repo into your plugins folder:
   * On Linux: `~/.config/LightTable/plugins/`
   * On Windows: `%APPDATALOCAL%/LightTable/plugins/`
 
-Clone [lt-gist](https://github.com/sreeharsha-m/lt-gist).
+As an example, clone [lt-gist](https://github.com/sreeharsha-m/lt-gist).
 
-Open `gist.cljs`.
+Open src `gist.cljs`.
 
-Save `gist.cljs` OR Run the command `Editor: Build file or project`. 
+Save `gist.cljs` OR Run `Editor: Build file or project`. 
 
 You should see "Compiled plugin to ...gist_compiled.js" in the status bar.
 
-Ctrl-Space `Plugins: Refresh plugin list` to detect the plugin.
+`Ctrl-Space` and start typing `Plugins: Refresh plugin list`.
+
+Detect your plugin.
 
 Save `gist.behaviors` or run the command `App: Reload behaviors` to load/reload the plugin behaviors.
 
@@ -115,15 +117,17 @@ Open your sample clojure code.
 
 `ctrl-shift-g`.
 
-Great, gist is created and its url is copied onto the clipboard. Paste the url in the browser.
+Great, a gist was just created and its url was copied onto the clipboard and status bar. Check it. Paste the url in the browser.
 
-Let's push this further, let's debug this plugin: 
+That's your gist!
 
-Uncomment the following code in gist.cljs.
+Let's push this further, let's debug this plugin: uncomment the following code in gist.cljs.
 
-    ;;(.log js/console path)
+    (.log js/console path)
 
-`Cmd-Enter` to evaluate it. Lighttable asks for a client, select 'Light Table UI'. Save `gist.cljs` again.
+`Cmd-Enter` to evaluate it. 
+
+Lighttable asks for a client, select 'Light Table UI'. Save `gist.cljs` again.
 
 `ctrl-shift-g`.
 
@@ -131,25 +135,30 @@ See the log printed right inside lighttable's console (`View Console`).
 
 What we just did is not possible in any IDE, except for Emacs. 
 
-IDEs like Sublime or Vim let you configure them with a variety of plugins and options, but won't modify or distribute their behavior at runtime. Their plugins' portability is limited by their language (python or emacs-lisp), and simple things in one IDE may not be simple in another. What's more, unlike others, Lighttable plugins are written in a platform independent language, clojurescript, that compiles to javascript on browser or node. 
+IDEs like Sublime or Vim let you configure them with a variety of plugins and options, but won't distribute and modify their behavior at runtime. Their plugin portability is limited by their language (Python or Emacs-lisp), and simple things in one IDE may not be simple in another. 
 
-Modifying the excution in any step of a command's life cycle, using a single langauge across the wires, is the kind of stuff that empowers lispers. 
+For example,
+ > You can't print a variable containing "hello world" and pipe its resulting String back into your IDE, on any part of your IDE, using nothing but your IDE, without modifying its source.
 
-Now it's all yours.
+We just did it, and wasn't that simple?
 
-For further insight, re-read Granger's seminal essay: [The IDE as Value](http://www.chris-granger.com/2013/01/24/the-ide-as-data/).
+What's more: 
 
-## Other chapters
+> Lighttable plugins are written in a platform independent language, Clojurescript, and compiles to Javascript running on the Browser or Node. Modifying the behavior of an app and any step of its life cycle, using  commands from a native langauge understood across borders, enables intelligent, highly contextual, infinitely customizable systems. 
 
-TODO. 
+Now it's yours, from a concept that shows how to do this, to [The IDE as Value](http://www.chris-granger.com/2013/01/24/the-ide-as-data/).
+
+## Chapters
+
+In the following chapters, we'll take the simple gist example and push it further. We'll add oAuth, add a lightweight git workflow, among other cool things, right here inside Lighttable.  
+
+See `drafts` on github branches, and 'Star' for updates.
 
 ## Status
 
 Working Draft.
 
-For other chapters, see `drafts` github branch. 
-
-Pull requests or suggestions are welcome.
+I'm still learning, pull requests or suggestions are welcome.
 
 ## LICENSE
 
