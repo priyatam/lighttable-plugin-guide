@@ -25,7 +25,7 @@ Lightable plugin development in a nutshell:
     
 This introductory chapter shows you first: how to download, run, and modify a light plugin from source. By doing this, we can understand how things are put together. 
 
-Once we figure that out we can create new plugins.
+Once we figure that out, we can create new plugins.
 
 ### Pre-Requisite
 
@@ -63,31 +63,35 @@ Congrats, you just gisted your code anonymously, from Lighttable!
 
 ### Setup keybindings
 
-**Short answer**: `Ctrl-Space` and start typing `Settings: User keymap`, select it. In the opened tab, under the `:editor` map of existing keys shown in `{}`, paste the following key value pair: 
+**Short answer**: 
+
+`Ctrl-Space` and start typing `Settings: User keymap`, select it. 
+
+In the opened tab, under the `:editor` map of existing keys shown in `{}`, paste the following key value pair: 
 
     "ctrl-shift-g" [:gist.submit]
     
-### Understanding Commands, Behaviors, Triggers, and Objects
+### Thinking in Commands, Triggers, Behaviors, and Objects
 
-The first step of customizing your plugin is setting up commands. 
+The first step of customizing your plugin is binding your keyboard shortcuts to commands.
 
-Read the plugin's source code and grep for `(cmd/command`. It's just a map with few keys. Look for the value of `:command`. In `lt-gist` it's [:gist.submit](https://github.com/sreeharsha-m/lt-gist/blob/master/src/lt/plugins/gist.cljs#L41).  
+In the plugin's source code, grep for `(cmd/command`. It's just a map with a few keys. Look for the value of `:command`. In `lt-gist` it's [:gist.submit](https://github.com/sreeharsha-m/lt-gist/blob/master/src/lt/plugins/gist.cljs#L41).  
 
-> `:command` points to another key, an element in a set of Triggers, composed in a Behavior ready to react as a Reaction.
+> `:command` points to another key, an element in a set of Triggers, composed in a Behavior ready to react.
 
-In this case, it's [::submit-gist](https://github.com/sreeharsha-m/lt-gist/blob/master/src/lt/plugins/gist.cljs#L22).  
+In this case, the behavior is [::submit-gist](https://github.com/sreeharsha-m/lt-gist/blob/master/src/lt/plugins/gist.cljs#L22).  
 
 It's a one line anonymous function that executes a process 'gist' on the cmd line passing the current file as args and stores the OUT in our [gist object](https://github.com/sreeharsha-m/lt-gist/blob/master/src/lt/plugins/gist.cljs#L35).
 
-> An **object** can, optionally, list its behaviors. Like a class, but every bit better, because it composes _its own_ methods at runtime
+> An **object** doesn't do anything. It captures state so others can pass it around. The state is quite frankly stateless, and doesn't know what it's doing. Optionally, it lists behaviors it's interested in collaborting with. Like a class, but every bit better, because it composes its _own_ methods (behaviors) at runtime. It also has initializers, among other things. What's important is that it's stupid, and doesn't do anything.
 
-Now that you understand how commands work, how they trigger reactions, you can run any existing Lighttable or plugins commands using your own keyboard shortcut, by writing just one line of code in `User.keymap`:
+Now that you understand how commands work, how they trigger reactions, you can run any Lighttable plugin, including Lightable itself, using your own keyboard shortcut in one line of code in `User.keymap`:
 
     "ctrl-shift-g" [:gist.submit] 
 
-No big deal, you can add keybindings in many IDEs. 
+No big deal, you can add keybindings in some many IDEs. However, Lighttable can modify its behavior, with a few lines of Clojurescript. 
 
-Like Emacs, Lighttable can modify its behavior, with just a few lines of Clojurescript.
+Like good Lisp programs, it empowers you with new commands that let you read and write and collaborate interesting views from any server.
 
 ### Modify and run a plugin from source
 
@@ -144,21 +148,21 @@ We just did it, and wasn't that simple?
 
 What's more: 
 
-> Lighttable plugins are written in a platform independent language, Clojurescript, and compiles to Javascript running on the Browser or Node. Modifying the behavior of an app and any step of its life cycle, using  commands from a native langauge understood across borders, enables intelligent, highly contextual, infinitely customizable systems. 
+> Lighttable plugins are written in a platform independent language, Clojurescript, and compiles to Javascript running on the Browser or Node. Modifying the behavior of an app and its life cycle, using  commands from a native langauge understood across borders, enables contextual, intelligent, and infinitely customizable systems.
 
-Now it's yours, from a concept that shows how to do this, to [The IDE as Value](http://www.chris-granger.com/2013/01/24/the-ide-as-data/).
+For further insight, read the seminal essay by Chris Granger: [The IDE as Value](http://www.chris-granger.com/2013/01/24/the-ide-as-data/).
 
 ## Chapters
 
-In the following chapters, we'll take the simple gist example and push it further. We'll add oAuth, add a lightweight git workflow, among other cool things, right here inside Lighttable.  
+In the following chapters, we'll take the simple gist example and push it further. We'll add oAuth, add a lightweight git workflow, among other  things, right here inside Lighttable.  
 
-See `drafts` on github branches, and 'Star' for updates.
+See `drafts` on github branches | 'Watch' for updates | 'Star' for encouraging open-book authors.
 
 ## Status
 
 Working Draft.
 
-I'm still learning, pull requests or suggestions are welcome.
+I'm still learning, pull requests on errata and inconsistencies are welcome.
 
 ## LICENSE
 
