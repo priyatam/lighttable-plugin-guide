@@ -139,16 +139,18 @@ See the log printed right inside lighttable's console (`View Console`).
 
 What we just did is not possible in any IDE, except for Emacs. 
 
-IDEs like Sublime or Vim let you configure them with a variety of plugins and options, but won't distribute and modify their behavior at runtime. Their plugin portability is limited by their language (Python or Emacs-lisp), and simple things in one IDE may not be simple in another. 
+IDEs like Sublime or Vim can be configured too, with a variety of plugins and options, but they can't modify their behavior at runtime. You need to change the source code. Also, their plugin portability is limited by their language (Python or Vim script), and simple things in one IDE may not be simple in another. 
 
 For example,
  > You can't print a variable containing "hello world" and pipe its resulting String back into your IDE, on any part of your IDE, using nothing but your IDE, without modifying its source.
 
 We just did it, and wasn't that simple?
 
-What's more: 
+Why is that important? 
 
 > Lighttable plugins are written in a platform independent language, Clojurescript, and compiles to Javascript running on the Browser or Node. Modifying the behavior of an app and its life cycle, using  commands from a native langauge understood across borders, enables contextual, intelligent, and infinitely customizable systems.
+
+In Lighttable, such extensions are possible with plugins, a subset of Lighttable itself, written in Clojurescript and Edn.
 
 For further insight, read the seminal essay by Chris Granger: [The IDE as Value](http://www.chris-granger.com/2013/01/24/the-ide-as-data/).
 
